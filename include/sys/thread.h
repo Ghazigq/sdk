@@ -440,6 +440,45 @@ static inline int thread_yield(void)
 #endif
 }
 
+#if defined(OS_RTOS)
+static inline int thread_info(void) {
+#if defined(OS_RTOS)
+#if defined(OS_RTTHREAD) && defined(RT_USING_FINSH)
+	return list_thread();
+#elif defined(OS_FREERTOS)
+	int max_len = configMAX_TASK_NAME_LEN;
+	TaskStatus_t* task_status = NULL;
+	uint32_t task_count       = 0;
+	uint32_t i                = 0;
+
+	printf("%-*.*s pri  status   mini restack\n", max_len, max_len, "thread");······
+	while (max_len--) printf("-");
+	printf(     " ---  -------  ------------\n");
+
+	task_count = uxTaskGetNumberOfTasks();
+	if (task_count <= 0) return -1;
+	task_status = (TaskStatus_t*)malloc(task_count * sizeof(*task_status));
+	if (task_status == NULL) return -1;
+	task_count = uxTaskGetSystemState(task_status, task_count, NULL);
+	for (i = 0; i < task_count; i++)
+	{
+		printf("%-*.*s %3d ", configMAX_TASK_NAME_LEN, configMAX_TASK_NAME_LEN, task_status[i].pcTaskName, task_status[i].uxCurrentPriority);
+
+		if (eReady == task_status[i].eCurrentState)          printf(" ready  ");
+		else if (eSuspended == task_status[i].eCurrentState) printf(" suspend");
+		else if (eBlocked == task_status[i].eCurrentState)   printf(" block  ");
+		else if (eDeleted == task_status[i].eCurrentState)   printf(" close  ");
+		else if (eRunning == task_status[i].eCurrentState)   printf(" running");
+		printf("      %8lu\n", task_status[i].usStackHighWaterMark);
+	}
+
+	free(task_status);
+#endif
+#endif
+  return 0;
+}
+#endif
+
 #if defined(OS_WINDOWS_XP)
 typedef DWORD KPRIORITY;
 typedef struct _CLIENT_ID
