@@ -13,8 +13,8 @@
 #include "rtthread.h"
 typedef struct rt_event	event_t;
 #elif defined(OS_FREERTOS)
-#include "freertos/FreeRTOS.h"
-#include "freertos/timers.h"
+#include "FreeRTOS.h"
+#include "timers.h"
 typedef TimerHandle_t	event_t;
 #else
 	#error "This rtos is not supported"

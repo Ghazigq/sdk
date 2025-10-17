@@ -12,9 +12,9 @@ typedef HANDLE sema_t;
 #include "rtthread.h"
 typedef struct rt_semaphore sema_t;
 #elif defined(OS_FREERTOS)
-#include "freertos/FreeRTOS.h"
-#include "freertos/queue.h"
-#include "freertos/semphr.h"
+#include "FreeRTOS.h"
+#include "queue.h"
+#include "semphr.h"
 typedef QueueHandle_t	sema_t;
 #else
 	#error "This rtos is not supported"

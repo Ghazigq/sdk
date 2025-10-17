@@ -21,8 +21,8 @@ typedef void (*funcptr_t)(void);
 #include "rtthread.h"
 #elif defined(OS_FREERTOS)
 #include <sys/time.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
+#include "FreeRTOS.h"
+#include "task.h"
 #else
 	#error "This rtos is not supported"
 #endif

@@ -32,8 +32,8 @@ typedef struct {
 #define mutex_lock() rt_mutex_take(key->mutex, RT_WAITING_FOREVER)
 #define mutex_unlock() rt_mutex_release(key->mutex)
 #elif defined(OS_FREERTOS)
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
+#include "FreeRTOS.h"
+#include "task.h"
 typedef struct {
     volatile int once;
     QueueHandle_t mutex;

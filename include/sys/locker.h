@@ -12,10 +12,10 @@ typedef CRITICAL_SECTION	locker_t;
 #include "rtthread.h"
 typedef struct rt_mutex		locker_t;
 #elif defined(OS_FREERTOS)
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "freertos/queue.h"
-#include "freertos/semphr.h"
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+#include "semphr.h"
 typedef QueueHandle_t		locker_t;
 #else
 	#error "This rtos is not supported"

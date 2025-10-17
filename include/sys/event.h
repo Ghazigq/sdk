@@ -12,8 +12,8 @@ typedef HANDLE	event_t;
 #include "rtthread.h"
 typedef struct rt_event	event_t;
 #elif defined(OS_FREERTOS)
-#include "freertos/FreeRTOS.h"
-#include "freertos/event_groups.h"
+#include "FreeRTOS.h"
+#include "event_groups.h"
 typedef EventGroupHandle_t	event_t;
 #else
 	#error "This rtos is not supported"

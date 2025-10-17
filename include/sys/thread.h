@@ -40,8 +40,8 @@ enum thread_priority
 };
 #elif defined(OS_FREERTOS)
 // enable configUSE_APPLICATION_TASK_TAG in FreeRTOSConfig.h
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
+#include "FreeRTOS.h"
+#include "task.h"
 #define pthread_t uint32_t
 typedef pthread_t tid_t;
 
